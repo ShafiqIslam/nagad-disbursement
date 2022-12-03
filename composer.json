@@ -1,0 +1,40 @@
+{
+    "name": "polygontech/nagad-disbursement",
+    "type": "library",
+    "description": "Send money (disburse) to Nagad accounts",
+    "keywords": [
+        "disbursement",
+        "nagad",
+        "merchant",
+        "merchant aggregator",
+        "MFI Merchant",
+        "P2P money transfer"
+    ],
+    "homepage": "https://github.com/ShafiqIslam/nagad-disbursement",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shafiqul Islam",
+            "email": "shafiq.startern@gmail.com",
+            "homepage": "https://github.com/ShafiqIslam/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.1.0",
+        "ext-curl": "*",
+        "polygontech/common-helpers": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Polygontech\\NagadDisbursement\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Polygontech\\NagadDisbursement\\ServiceProvider"
+            ]
+        }
+    }
+}
