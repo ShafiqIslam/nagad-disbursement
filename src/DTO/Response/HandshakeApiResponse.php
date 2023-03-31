@@ -25,7 +25,8 @@ class HandshakeApiResponse
             apiKey: $this->X_KM_Api_Key,
             key: $sensitiveResponse['key'],
             iv: $sensitiveResponse['iv'],
-            keyId: $sensitiveResponse['keyId']
+            keyId: $sensitiveResponse['keyId'],
+            challenge: $sensitiveResponse['challenge'] ?? null,
         );
     }
 

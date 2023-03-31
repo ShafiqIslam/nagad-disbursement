@@ -2,6 +2,7 @@
 
 namespace Polygontech\NagadDisbursement;
 
+use Carbon\Carbon;
 use Polygontech\CommonHelpers\HTTP\URL;
 
 /**
@@ -44,6 +45,19 @@ class Config
         return base64_encode($signature);
     }
 
+    private function concat(): string
+    {
+        return $this->merchantAggegatorId . Helpers::formatTime(Carbon::now()) . Helpers::generateRandomString();
+    }
+
+    public function generateSignatureWithOutData(): string
+    {
+        $data = $this->concat();
+        $privateKey = $this->getMerchantPrivateKeyWithHeader();
+        openssl_sign($data, $signature, $privateKey, OPENSSL_ALGO_SHA256);
+        return base64_encode($signature);
+    }
+
     public function decrypt(string $cryptText): string
     {
         $privateKey = $this->getMerchantPrivateKeyWithHeader();
@@ -59,5 +73,13 @@ class Config
     public function makeUrlOfPath(string $path): URL
     {
         return $this->makeBaseUrl()->mutatePath($path);
+    }
+
+    public function generateSignatureWithoutKey(array $data): string
+    {
+        $HMAC_KEY = $this->hmacKey;
+        $hmac_key = hex2bin($HMAC_KEY);
+        $hash_value = hash_hmac('sha256', json_encode($data), $hmac_key, true);
+        return base64_encode($hash_value);
     }
 }

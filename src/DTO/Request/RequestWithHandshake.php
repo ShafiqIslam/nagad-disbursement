@@ -12,7 +12,7 @@ abstract class RequestWithHandshake extends Request
     public function toArrayWithHandshake(HandshakeOutput $handshake): array
     {
         return [
-            "sensitiveData" => $handshake->encrypt($this->toJson())
+            "sensitiveData" => $handshake->encrypt($this->toJson()),
         ];
     }
 

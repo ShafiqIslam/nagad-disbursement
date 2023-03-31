@@ -43,11 +43,11 @@ class HandshakeRequest extends Request
         ];
     }
 
-    public static function fromMerchantAggregatorID(string $merchantAggregatorId): HandshakeRequest
+    public static function fromMerchantAggregatorID(string $merchantAggregatorId, $requestDateTime): HandshakeRequest
     {
         return new HandshakeRequest(
             merchantAggregatorId: $merchantAggregatorId,
-            time: Carbon::now(),
+            time: $requestDateTime,
             random: Helpers::generateRandomString()
         );
     }

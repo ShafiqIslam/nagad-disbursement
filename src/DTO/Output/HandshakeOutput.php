@@ -14,6 +14,7 @@ class HandshakeOutput
         public readonly string $key,
         public readonly string $iv,
         public readonly string $keyId,
+        public readonly ?string $challenge
     ) {
         $this->decodedKey = base64_decode($key);
         $this->decodedIv = base64_decode($iv);
